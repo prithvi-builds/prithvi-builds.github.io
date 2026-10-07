@@ -1,2 +1,5 @@
-# prithvi-builds.github.io
-My personal portfolio website
+# PRITHVI
+
+### Software Developer → AI/ML/LLM Engineer
+
+My personal portfolio website.
