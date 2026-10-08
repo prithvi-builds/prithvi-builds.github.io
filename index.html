@@ -1,9 +1,474 @@
-prithvi-builds.github.io
-│
-├── index.html
-│
-└── music
-    ├── lofi-01.mp3
-    ├── lofi-02.mp3
-    ├── lofi-03.mp3
-    └── lofi-04.mp3
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PRITHVI — Creative Portfolio</title>
+<meta name="description" content="Prithvi Singh — creative portfolio, digital experiences and visual design.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#080808;
+  color:#f5f3ed;
+  font-family:Manrope,sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.035;
+  z-index:50;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
+
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:40;
+  padding:25px 5vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  mix-blend-mode:difference;
+}
+.logo{font-size:22px;font-weight:800}
+.navlinks{display:flex;gap:32px;font-size:13px}
+.navlinks a{opacity:.8}
+.navlinks a:hover{opacity:1}
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:120px 5vw 70px;
+  overflow:hidden;
+}
+.glow{
+  position:absolute;
+  width:45vw;
+  height:45vw;
+  border-radius:50%;
+  background:radial-gradient(circle,#d9ff4f22,transparent 65%);
+  right:-10vw;
+  top:10vh;
+  animation:float 8s ease-in-out infinite alternate;
+}
+@keyframes float{to{transform:translate(-8vw,8vh) scale(1.2)}}
+
+.hero small{
+  position:absolute;
+  top:28%;
+  left:5vw;
+  font-family:"DM Mono";
+  color:#999;
+  font-size:11px;
+}
+.hero h1{
+  position:relative;
+  z-index:2;
+  font-size:clamp(70px,15vw,220px);
+  line-height:.78;
+  letter-spacing:-.08em;
+  font-weight:800;
+}
+.outline{
+  color:transparent;
+  -webkit-text-stroke:1px #f5f3ed;
+}
+
+.intro{
+  padding:130px 8vw;
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:8vw;
+  border-top:1px solid #ffffff18;
+}
+.label{
+  font-family:"DM Mono";
+  font-size:11px;
+  color:#999;
+  text-transform:uppercase;
+}
+.intro h2{
+  font-size:clamp(36px,5vw,75px);
+  line-height:.95;
+  letter-spacing:-.05em;
+}
+.intro p{
+  color:#aaa;
+  font-size:18px;
+  line-height:1.8;
+  max-width:650px;
+}
+
+.projects{
+  padding:100px 5vw;
+}
+.sectionhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:50px;
+}
+.sectionhead h2{
+  font-size:clamp(40px,7vw,100px);
+  letter-spacing:-.06em;
+}
+.project{
+  min-height:55vh;
+  margin:25px 0;
+  padding:40px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:end;
+  border-radius:4px;
+  background:linear-gradient(135deg,#141414,#303030);
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.project:hover{transform:scale(.985)}
+.project:nth-child(2){background:linear-gradient(135deg,#151515,#513f72)}
+.project:nth-child(3){background:linear-gradient(135deg,#101010,#244b53)}
+.project:nth-child(4){background:linear-gradient(135deg,#171717,#60472e)}
+.project h3{
+  font-size:clamp(45px,8vw,120px);
+  letter-spacing:-.07em;
+}
+.project span{
+  position:absolute;
+  top:35px;
+  right:35px;
+  font-family:"DM Mono";
+  font-size:11px;
+  color:#aaa;
+}
+
+.services{
+  padding:120px 8vw;
+  border-top:1px solid #ffffff18;
+}
+.service{
+  padding:30px 0;
+  border-bottom:1px solid #ffffff18;
+  display:flex;
+  justify-content:space-between;
+  font-size:clamp(25px,4vw,55px);
+  letter-spacing:-.04em;
+}
+.service span{color:#777}
+
+.contact{
+  padding:160px 5vw;
+  text-align:center;
+}
+.contact h2{
+  font-size:clamp(55px,12vw,180px);
+  line-height:.8;
+  letter-spacing:-.08em;
+}
+.contact p{margin:45px 0 20px;color:#888}
+.contact a{
+  font-size:20px;
+  border-bottom:1px solid #f5f3ed;
+  padding-bottom:7px;
+}
+
+footer{
+  padding:30px 5vw;
+  border-top:1px solid #ffffff18;
+  display:flex;
+  justify-content:space-between;
+  color:#777;
+  font-size:11px;
+  font-family:"DM Mono";
+}
+
+/* MUSIC */
+.music{
+  position:fixed;
+  z-index:45;
+  left:20px;
+  bottom:20px;
+  width:290px;
+  padding:16px;
+  background:#111;
+  border:1px solid #ffffff1c;
+  border-radius:16px;
+  box-shadow:0 20px 60px #0009;
+  backdrop-filter:blur(18px);
+}
+.music-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.music-title{
+  font-size:12px;
+  font-weight:700;
+}
+.music-name{
+  color:#777;
+  font-family:"DM Mono";
+  font-size:10px;
+  margin-top:3px;
+}
+.music button{
+  border:0;
+  background:#222;
+  color:#fff;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+}
+.controls button:nth-child(2){
+  background:#d9ff4f;
+  color:#080808;
+}
+.progress{
+  width:100%;
+  height:3px;
+  margin:12px 0;
+  accent-color:#d9ff4f;
+}
+.music-bottom{
+  display:flex;
+  justify-content:space-between;
+  color:#777;
+  font-size:9px;
+  font-family:"DM Mono";
+}
+
+@media(max-width:700px){
+  .navlinks{display:none}
+  .hero h1{font-size:21vw}
+  .intro{grid-template-columns:1fr;padding:100px 7vw}
+  .project{min-height:42vh;padding:25px}
+  .project h3{font-size:16vw}
+  .services{padding:90px 7vw}
+  .contact{padding:120px 5vw}
+  .music{left:12px;right:12px;bottom:12px;width:auto}
+  footer{padding-bottom:100px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="noise"></div>
+
+<nav>
+  <div class="logo">PS.</div>
+  <div class="navlinks">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#services">Capabilities</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="glow"></div>
+  <small>CREATIVE PORTFOLIO / 2026</small>
+  <h1>PRITHVI<br><span class="outline">SINGH</span></h1>
+</section>
+
+<section class="intro" id="about">
+  <div class="label">01 / About</div>
+  <div>
+    <h2>Design should feel alive.</h2>
+    <br>
+    <p>
+      I'm Prithvi — exploring design, digital experiences,
+      visuals and creative technology. I like making things
+      that feel simple, expressive and memorable.
+    </p>
+  </div>
+</section>
+
+<section class="projects" id="work">
+  <div class="sectionhead">
+    <div class="label">02 / Selected work</div>
+    <h2>WORK</h2>
+  </div>
+
+  <div class="project">
+    <span>01 — DIGITAL</span>
+    <h3>NEON</h3>
+  </div>
+
+  <div class="project">
+    <span>02 — VISUAL</span>
+    <h3>FORM</h3>
+  </div>
+
+  <div class="project">
+    <span>03 — EXPERIENCE</span>
+    <h3>ORBITAL</h3>
+  </div>
+
+  <div class="project">
+    <span>04 — EXPERIMENT</span>
+    <h3>OBJECT</h3>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="label">03 / Capabilities</div>
+
+  <div class="service">
+    <span>01</span>
+    Creative Direction
+  </div>
+
+  <div class="service">
+    <span>02</span>
+    Web & Digital
+  </div>
+
+  <div class="service">
+    <span>03</span>
+    Visual Design
+  </div>
+
+  <div class="service">
+    <span>04</span>
+    Motion & Interaction
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="label">04 / Contact</div>
+  <h2>LET'S<br>CREATE.</h2>
+  <p>Have an idea? Let's make something beautiful.</p>
+  <a href="mailto:contact.prithvii@gmail.com">
+    contact.prithvii@gmail.com
+  </a>
+  <br><br>
+  <a href="tel:6302546793">6302546793</a>
+</section>
+
+<footer>
+  <span>© 2026 PRITHVI SINGH</span>
+  <span>MADE WITH CURIOSITY</span>
+</footer>
+
+<!-- MUSIC PLAYER -->
+<div class="music">
+  <div class="music-top">
+    <div>
+      <div class="music-title">♫ LOFI RADIO</div>
+      <div class="music-name" id="trackName">Midnight — Track 01</div>
+    </div>
+    <button id="shuffle">⤨</button>
+  </div>
+
+  <input class="progress" id="progress" type="range" min="0" max="100" value="0">
+
+  <div class="controls">
+    <button onclick="previous()">‹</button>
+    <button onclick="togglePlay()" id="play">▶</button>
+    <button onclick="next()">›</button>
+  </div>
+
+  <div class="music-bottom">
+    <span>PEACEFUL • LOFI</span>
+    <span id="volumeText">VOL 70%</span>
+  </div>
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const tracks=[
+  {name:"Midnight — Track 01",src:"music/lofi-01.mp3"},
+  {name:"Rainy Window — Track 02",src:"music/lofi-02.mp3"},
+  {name:"Late Night — Track 03",src:"music/lofi-03.mp3"},
+  {name:"Dreaming — Track 04",src:"music/lofi-04.mp3"}
+];
+
+let current=0;
+let shuffled=false;
+
+const audio=document.getElementById("audio");
+const play=document.getElementById("play");
+const name=document.getElementById("trackName");
+const progress=document.getElementById("progress");
+
+audio.volume=.7;
+
+function loadTrack(){
+  audio.src=tracks[current].src;
+  name.textContent=tracks[current].name;
+  progress.value=0;
+}
+
+function togglePlay(){
+  if(audio.paused){
+    audio.play();
+    play.textContent="Ⅱ";
+  }else{
+    audio.pause();
+    play.textContent="▶";
+  }
+}
+
+function next(){
+  if(shuffled){
+    current=Math.floor(Math.random()*tracks.length);
+  }else{
+    current=(current+1)%tracks.length;
+  }
+  loadTrack();
+  audio.play();
+  play.textContent="Ⅱ";
+}
+
+function previous(){
+  current=(current-1+tracks.length)%tracks.length;
+  loadTrack();
+  audio.play();
+  play.textContent="Ⅱ";
+}
+
+document.getElementById("shuffle").onclick=()=>{
+  shuffled=!shuffled;
+  document.getElementById("shuffle").style.color=
+    shuffled ? "#d9ff4f" : "#fff";
+};
+
+audio.addEventListener("ended",next);
+
+audio.addEventListener("timeupdate",()=>{
+  if(audio.duration){
+    progress.value=(audio.currentTime/audio.duration)*100;
+  }
+});
+
+progress.addEventListener("input",()=>{
+  if(audio.duration){
+    audio.currentTime=(progress.value/100)*audio.duration;
+  }
+});
+
+loadTrack();
+</script>
+
+</body>
+    </html>
