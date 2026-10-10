@@ -1,474 +1,784 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PRITHVI — Creative Portfolio</title>
 <meta name="description" content="Prithvi Singh — creative portfolio, digital experiences and visual design.">
+<meta name="theme-color" content="#080808">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
-
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:#080808;
-  color:#f5f3ed;
-  font-family:Manrope,sans-serif;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-
-.noise{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  opacity:.035;
-  z-index:50;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+:root {
+  --bg: #080808;
+  --panel: #111111;
+  --text: #f5f3ed;
+  --muted: #858585;
+  --line: #ffffff1c;
+  --accent: #d9ff4f;
 }
 
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:40;
-  padding:25px 5vw;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  mix-blend-mode:difference;
-}
-.logo{font-size:22px;font-weight:800}
-.navlinks{display:flex;gap:32px;font-size:13px}
-.navlinks a{opacity:.8}
-.navlinks a:hover{opacity:1}
-
-.hero{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  padding:120px 5vw 70px;
-  overflow:hidden;
-}
-.glow{
-  position:absolute;
-  width:45vw;
-  height:45vw;
-  border-radius:50%;
-  background:radial-gradient(circle,#d9ff4f22,transparent 65%);
-  right:-10vw;
-  top:10vh;
-  animation:float 8s ease-in-out infinite alternate;
-}
-@keyframes float{to{transform:translate(-8vw,8vh) scale(1.2)}}
-
-.hero small{
-  position:absolute;
-  top:28%;
-  left:5vw;
-  font-family:"DM Mono";
-  color:#999;
-  font-size:11px;
-}
-.hero h1{
-  position:relative;
-  z-index:2;
-  font-size:clamp(70px,15vw,220px);
-  line-height:.78;
-  letter-spacing:-.08em;
-  font-weight:800;
-}
-.outline{
-  color:transparent;
-  -webkit-text-stroke:1px #f5f3ed;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.intro{
-  padding:130px 8vw;
-  display:grid;
-  grid-template-columns:1fr 1.5fr;
-  gap:8vw;
-  border-top:1px solid #ffffff18;
-}
-.label{
-  font-family:"DM Mono";
-  font-size:11px;
-  color:#999;
-  text-transform:uppercase;
-}
-.intro h2{
-  font-size:clamp(36px,5vw,75px);
-  line-height:.95;
-  letter-spacing:-.05em;
-}
-.intro p{
-  color:#aaa;
-  font-size:18px;
-  line-height:1.8;
-  max-width:650px;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-.projects{
-  padding:100px 5vw;
-}
-.sectionhead{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:50px;
-}
-.sectionhead h2{
-  font-size:clamp(40px,7vw,100px);
-  letter-spacing:-.06em;
-}
-.project{
-  min-height:55vh;
-  margin:25px 0;
-  padding:40px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:end;
-  border-radius:4px;
-  background:linear-gradient(135deg,#141414,#303030);
-  transition:transform .5s cubic-bezier(.16,1,.3,1);
-}
-.project:hover{transform:scale(.985)}
-.project:nth-child(2){background:linear-gradient(135deg,#151515,#513f72)}
-.project:nth-child(3){background:linear-gradient(135deg,#101010,#244b53)}
-.project:nth-child(4){background:linear-gradient(135deg,#171717,#60472e)}
-.project h3{
-  font-size:clamp(45px,8vw,120px);
-  letter-spacing:-.07em;
-}
-.project span{
-  position:absolute;
-  top:35px;
-  right:35px;
-  font-family:"DM Mono";
-  font-size:11px;
-  color:#aaa;
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  overflow-x: hidden;
 }
 
-.services{
-  padding:120px 8vw;
-  border-top:1px solid #ffffff18;
-}
-.service{
-  padding:30px 0;
-  border-bottom:1px solid #ffffff18;
-  display:flex;
-  justify-content:space-between;
-  font-size:clamp(25px,4vw,55px);
-  letter-spacing:-.04em;
-}
-.service span{color:#777}
-
-.contact{
-  padding:160px 5vw;
-  text-align:center;
-}
-.contact h2{
-  font-size:clamp(55px,12vw,180px);
-  line-height:.8;
-  letter-spacing:-.08em;
-}
-.contact p{margin:45px 0 20px;color:#888}
-.contact a{
-  font-size:20px;
-  border-bottom:1px solid #f5f3ed;
-  padding-bottom:7px;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-footer{
-  padding:30px 5vw;
-  border-top:1px solid #ffffff18;
-  display:flex;
-  justify-content:space-between;
-  color:#777;
-  font-size:11px;
-  font-family:"DM Mono";
+button {
+  font: inherit;
 }
 
-/* MUSIC */
-.music{
-  position:fixed;
-  z-index:45;
-  left:20px;
-  bottom:20px;
-  width:290px;
-  padding:16px;
-  background:#111;
-  border:1px solid #ffffff1c;
-  border-radius:16px;
-  box-shadow:0 20px 60px #0009;
-  backdrop-filter:blur(18px);
-}
-.music-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
-}
-.music-title{
-  font-size:12px;
-  font-weight:700;
-}
-.music-name{
-  color:#777;
-  font-family:"DM Mono";
-  font-size:10px;
-  margin-top:3px;
-}
-.music button{
-  border:0;
-  background:#222;
-  color:#fff;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  cursor:pointer;
-}
-.controls{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-}
-.controls button:nth-child(2){
-  background:#d9ff4f;
-  color:#080808;
-}
-.progress{
-  width:100%;
-  height:3px;
-  margin:12px 0;
-  accent-color:#d9ff4f;
-}
-.music-bottom{
-  display:flex;
-  justify-content:space-between;
-  color:#777;
-  font-size:9px;
-  font-family:"DM Mono";
+::selection {
+  background: var(--accent);
+  color: #080808;
 }
 
-@media(max-width:700px){
-  .navlinks{display:none}
-  .hero h1{font-size:21vw}
-  .intro{grid-template-columns:1fr;padding:100px 7vw}
-  .project{min-height:42vh;padding:25px}
-  .project h3{font-size:16vw}
-  .services{padding:90px 7vw}
-  .contact{padding:120px 5vw}
-  .music{left:12px;right:12px;bottom:12px;width:auto}
-  footer{padding-bottom:100px}
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 27px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+  border-bottom: 1px solid #ffffff0d;
+}
+
+.logo {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: .15em;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.navlinks {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.navlinks a {
+  font-size: 11px;
+  color: #aaa;
+  transition: color .2s;
+}
+
+.navlinks a:hover {
+  color: var(--accent);
+}
+
+.nav-status {
+  font: 10px "DM Mono", monospace;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.status-dot {
+  height: 6px;
+  width: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.hero {
+  min-height: 100svh;
+  padding: 150px 5vw 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font: 10px "DM Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(65px, 13.4vw, 190px);
+  line-height: .82;
+  letter-spacing: -.095em;
+  font-weight: 800;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero h1 .outline {
+  color: transparent;
+  -webkit-text-stroke: 1px #f5f3ed8c;
+  margin-left: 8vw;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-top: 55px;
+}
+
+.hero-description {
+  max-width: 340px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #aaa;
+}
+
+.hero-description strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hero-index {
+  color: var(--muted);
+  font: 10px "DM Mono", monospace;
+  line-height: 2;
+  text-align: right;
+}
+
+.scroll-note {
+  margin-top: 60px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font: 10px "DM Mono", monospace;
+  color: var(--muted);
+}
+
+.scroll-line {
+  width: 35px;
+  height: 1px;
+  background: var(--accent);
+}
+
+section {
+  border-top: 1px solid var(--line);
+}
+
+.section-label {
+  color: var(--accent);
+  font: 10px "DM Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.intro {
+  padding: 130px 10vw;
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 50px;
+}
+
+.intro h2 {
+  font-size: clamp(30px, 4vw, 56px);
+  letter-spacing: -.06em;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.intro h2 span {
+  color: #777;
+}
+
+.intro-copy {
+  max-width: 580px;
+  color: #999;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.intro-copy p + p {
+  margin-top: 20px;
+}
+
+.intro-copy strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.work {
+  padding: 110px 5vw 120px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 45px;
+}
+
+.section-heading h2 {
+  font-size: clamp(40px, 7vw, 85px);
+  letter-spacing: -.08em;
+  line-height: 1;
+}
+
+.section-heading p {
+  font: 10px "DM Mono", monospace;
+  color: var(--muted);
+}
+
+.project-list {
+  border-top: 1px solid var(--line);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 65px 1fr auto;
+  align-items: center;
+  gap: 25px;
+  padding: 35px 5px;
+  border-bottom: 1px solid var(--line);
+  transition: padding .25s;
+}
+
+.project:hover {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.project-number {
+  font: 11px "DM Mono", monospace;
+  color: var(--muted);
+}
+
+.project h3 {
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 600;
+  letter-spacing: -.06em;
+}
+
+.project p {
+  margin-top: 9px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.project-arrow {
+  font-size: 24px;
+  color: var(--accent);
+  transition: transform .2s;
+}
+
+.project:hover .project-arrow {
+  transform: translate(4px, -4px);
+}
+
+.capabilities {
+  padding: 110px 5vw 120px;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 45px;
+}
+
+.capability {
+  background: var(--bg);
+  padding: 30px 25px;
+  min-height: 180px;
+}
+
+.capability-number {
+  font: 10px "DM Mono", monospace;
+  color: var(--accent);
+}
+
+.capability h3 {
+  font-size: 20px;
+  margin-top: 35px;
+  font-weight: 600;
+  letter-spacing: -.04em;
+}
+
+.capability p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.contact {
+  padding: 130px 5vw 140px;
+}
+
+.contact h2 {
+  font-size: clamp(45px, 10vw, 125px);
+  line-height: .95;
+  letter-spacing: -.09em;
+  font-weight: 700;
+}
+
+.contact h2 span {
+  color: var(--accent);
+}
+
+.contact-bottom {
+  margin-top: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.contact-bottom p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.contact-link {
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 12px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.contact-link span {
+  color: var(--accent);
+}
+
+footer {
+  padding: 30px 5vw;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #777;
+  font-size: 10px;
+  font-family: "DM Mono", monospace;
+}
+
+/* Minimal ambient music control */
+.ambient-toggle {
+  position: fixed;
+  z-index: 45;
+  right: 22px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  color: var(--text);
+  background: #111e;
+  border: 1px solid #ffffff24;
+  border-radius: 999px;
+  font: 10px "DM Mono", monospace;
+  letter-spacing: .08em;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color .2s, background .2s;
+}
+
+.ambient-toggle:hover {
+  border-color: #d9ff4f88;
+}
+
+.ambient-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #777;
+}
+
+.ambient-toggle.playing .ambient-dot {
+  background: var(--accent);
+  box-shadow: 0 0 12px #d9ff4f88;
+}
+
+@media (max-width: 700px) {
+  nav {
+    padding: 23px 6vw;
+  }
+
+  .navlinks {
+    display: none;
+  }
+
+  .hero {
+    padding: 130px 6vw 50px;
+    min-height: 90svh;
+  }
+
+  .hero h1 {
+    font-size: 18vw;
+  }
+
+  .hero h1 .outline {
+    margin-left: 3vw;
+  }
+
+  .hero-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .hero-index {
+    text-align: left;
+  }
+
+  .scroll-note {
+    margin-top: 40px;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 90px 7vw;
+  }
+
+  .work,
+  .capabilities {
+    padding: 85px 6vw;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .project {
+    grid-template-columns: 30px 1fr auto;
+    gap: 12px;
+    padding: 27px 0;
+  }
+
+  .project h3 {
+    font-size: 26px;
+  }
+
+  .project p {
+    max-width: 240px;
+  }
+
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capability {
+    min-height: 145px;
+  }
+
+  .capability h3 {
+    margin-top: 22px;
+  }
+
+  .contact {
+    padding: 100px 6vw 110px;
+  }
+
+  .contact-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ambient-toggle {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  footer {
+    padding: 25px 6vw 75px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
-
-<div class="noise"></div>
+<div class="noise" aria-hidden="true"></div>
 
 <nav>
-  <div class="logo">PS.</div>
+  <a class="logo" href="#home">P<span>.</span>S</a>
+
   <div class="navlinks">
-    <a href="#work">Work</a>
     <a href="#about">About</a>
-    <a href="#services">Capabilities</a>
+    <a href="#work">Work</a>
+    <a href="#capabilities">Capabilities</a>
     <a href="#contact">Contact</a>
+  </div>
+
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    DIGITAL SPACE
   </div>
 </nav>
 
-<section class="hero">
-  <div class="glow"></div>
-  <small>CREATIVE PORTFOLIO / 2026</small>
-  <h1>PRITHVI<br><span class="outline">SINGH</span></h1>
-</section>
+<main>
+  <header class="hero" id="home">
+    <div class="hero-top">
+      <p class="eyebrow">INDEPENDENT CREATIVE PORTFOLIO</p>
+      <p class="eyebrow">INDIA · 2026</p>
+    </div>
 
-<section class="intro" id="about">
-  <div class="label">01 / About</div>
-  <div>
-    <h2>Design should feel alive.</h2>
-    <br>
-    <p>
-      I'm Prithvi — exploring design, digital experiences,
-      visuals and creative technology. I like making things
-      that feel simple, expressive and memorable.
-    </p>
-  </div>
-</section>
+    <h1>
+      <span>PRITHVI</span>
+      <span class="outline">SINGH.</span>
+    </h1>
 
-<section class="projects" id="work">
-  <div class="sectionhead">
-    <div class="label">02 / Selected work</div>
-    <h2>WORK</h2>
-  </div>
+    <div class="hero-bottom">
+      <p class="hero-description">
+        Exploring the intersection of <strong>design, technology</strong>
+        and digital experiences. Building ideas into something meaningful.
+      </p>
 
-  <div class="project">
-    <span>01 — DIGITAL</span>
-    <h3>NEON</h3>
-  </div>
+      <p class="hero-index">
+        PERSONAL PORTFOLIO<br>
+        DESIGN MINDED · ALWAYS LEARNING
+      </p>
+    </div>
 
-  <div class="project">
-    <span>02 — VISUAL</span>
-    <h3>FORM</h3>
-  </div>
+    <a class="scroll-note" href="#about">
+      <span class="scroll-line"></span>
+      SCROLL TO EXPLORE
+    </a>
+  </header>
 
-  <div class="project">
-    <span>03 — EXPERIENCE</span>
-    <h3>ORBITAL</h3>
-  </div>
+  <section class="intro" id="about">
+    <div>
+      <p class="section-label">01 / ABOUT</p>
+      <h2>
+        Quietly curious.<br>
+        <span>Intentionally creating.</span>
+      </h2>
+    </div>
 
-  <div class="project">
-    <span>04 — EXPERIMENT</span>
-    <h3>OBJECT</h3>
-  </div>
-</section>
+    <div class="intro-copy">
+      <p>
+        I'm Prithvi Singh. This is my personal space on the internet —
+        a place to explore ideas, develop skills and document my creative journey.
+      </p>
+      <p>
+        I'm interested in <strong>minimal design, digital experiences,
+        visual storytelling and technology.</strong> I believe the best
+        work doesn't need to be loud to make an impression.
+      </p>
+      <p>
+        This portfolio will evolve as I learn, experiment and build.
+        Every project is an opportunity to get better.
+      </p>
+    </div>
+  </section>
 
-<section class="services" id="services">
-  <div class="label">03 / Capabilities</div>
+  <section class="work" id="work">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">02 / SELECTED WORK</p>
+        <h2>Things in progress.</h2>
+      </div>
+      <p>EXPLORATIONS & EXPERIMENTS</p>
+    </div>
 
-  <div class="service">
-    <span>01</span>
-    Creative Direction
-  </div>
+    <div class="project-list">
+      <article class="project">
+        <span class="project-number">01</span>
+        <div>
+          <h3>Digital Presence</h3>
+          <p>A personal website exploring minimal layouts and dark visual design.</p>
+        </div>
+        <span class="project-arrow" aria-hidden="true">↗</span>
+      </article>
 
-  <div class="service">
-    <span>02</span>
-    Web & Digital
-  </div>
+      <article class="project">
+        <span class="project-number">02</span>
+        <div>
+          <h3>Visual Experiments</h3>
+          <p>Exploring typography, composition, contrast and visual identity.</p>
+        </div>
+        <span class="project-arrow" aria-hidden="true">↗</span>
+      </article>
 
-  <div class="service">
-    <span>03</span>
-    Visual Design
-  </div>
+      <article class="project">
+        <span class="project-number">03</span>
+        <div>
+          <h3>Future Builds</h3>
+          <p>A space for new ideas, experiments and projects yet to come.</p>
+        </div>
+        <span class="project-arrow" aria-hidden="true">↗</span>
+      </article>
+    </div>
+  </section>
 
-  <div class="service">
-    <span>04</span>
-    Motion & Interaction
-  </div>
-</section>
+  <section class="capabilities" id="capabilities">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">03 / CAPABILITIES</p>
+        <h2>Areas of interest.</h2>
+      </div>
+      <p>LEARNING BY DOING</p>
+    </div>
 
-<section class="contact" id="contact">
-  <div class="label">04 / Contact</div>
-  <h2>LET'S<br>CREATE.</h2>
-  <p>Have an idea? Let's make something beautiful.</p>
-  <a href="mailto:contact.prithvii@gmail.com">
-    contact.prithvii@gmail.com
-  </a>
-  <br><br>
-  <a href="tel:6302546793">6302546793</a>
-</section>
+    <div class="capability-grid">
+      <article class="capability">
+        <span class="capability-number">01</span>
+        <h3>Digital Design</h3>
+        <p>Minimal layouts, typography, visual hierarchy and thoughtful interfaces.</p>
+      </article>
+
+      <article class="capability">
+        <span class="capability-number">02</span>
+        <h3>Web Experiences</h3>
+        <p>Building for the web and learning how design meets functionality.</p>
+      </article>
+
+      <article class="capability">
+        <span class="capability-number">03</span>
+        <h3>Creative Direction</h3>
+        <p>Developing a consistent visual identity, mood and personal aesthetic.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="section-label">04 / CONTACT</p>
+    <h2>Have an idea?<br><span>Let's connect.</span></h2>
+
+    <div class="contact-bottom">
+      <p>
+        Open to conversations, creative ideas<br>
+        and opportunities to learn together.
+      </p>
+
+      <a class="contact-link" href="mailto:contact.prithvii@gmail.com">
+        contact.prithvii@gmail.com <span>↗</span>
+      </a>
+    </div>
+  </section>
+</main>
 
 <footer>
   <span>© 2026 PRITHVI SINGH</span>
-  <span>MADE WITH CURIOSITY</span>
+  <span>BUILT WITH INTENTION.</span>
+  <a href="#home">BACK TO TOP ↑</a>
 </footer>
 
-<!-- MUSIC PLAYER -->
-<div class="music">
-  <div class="music-top">
-    <div>
-      <div class="music-title">♫ LOFI RADIO</div>
-      <div class="music-name" id="trackName">Midnight — Track 01</div>
-    </div>
-    <button id="shuffle">⤨</button>
-  </div>
+<!-- MINIMAL AMBIENT MUSIC CONTROL -->
+<button
+  class="ambient-toggle"
+  id="ambientToggle"
+  type="button"
+  aria-label="Play ambient music"
+  aria-pressed="false"
+>
+  <span class="ambient-dot"></span>
+  <span id="ambientIcon">♪</span>
+  <span id="ambientLabel">SOUND OFF</span>
+</button>
 
-  <input class="progress" id="progress" type="range" min="0" max="100" value="0">
-
-  <div class="controls">
-    <button onclick="previous()">‹</button>
-    <button onclick="togglePlay()" id="play">▶</button>
-    <button onclick="next()">›</button>
-  </div>
-
-  <div class="music-bottom">
-    <span>PEACEFUL • LOFI</span>
-    <span id="volumeText">VOL 70%</span>
-  </div>
-</div>
-
-<audio id="audio"></audio>
+<audio id="audio" loop preload="none">
+  <source src="music/Velvet_Tide.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-const tracks=[
-  {name:"Midnight — Track 01",src:"music/lofi-01.mp3"},
-  {name:"Rainy Window — Track 02",src:"music/lofi-02.mp3"},
-  {name:"Late Night — Track 03",src:"music/lofi-03.mp3"},
-  {name:"Dreaming — Track 04",src:"music/lofi-04.mp3"}
-];
+const audio = document.getElementById("audio");
+const toggle = document.getElementById("ambientToggle");
+const icon = document.getElementById("ambientIcon");
+const label = document.getElementById("ambientLabel");
 
-let current=0;
-let shuffled=false;
+audio.volume = 0.25;
 
-const audio=document.getElementById("audio");
-const play=document.getElementById("play");
-const name=document.getElementById("trackName");
-const progress=document.getElementById("progress");
+toggle.addEventListener("click", async () => {
+  if (audio.paused) {
+    try {
+      await audio.play();
 
-audio.volume=.7;
-
-function loadTrack(){
-  audio.src=tracks[current].src;
-  name.textContent=tracks[current].name;
-  progress.value=0;
-}
-
-function togglePlay(){
-  if(audio.paused){
-    audio.play();
-    play.textContent="Ⅱ";
-  }else{
+      toggle.classList.add("playing");
+      icon.textContent = "♫";
+      label.textContent = "SOUND ON";
+      toggle.setAttribute("aria-label", "Pause ambient music");
+      toggle.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      label.textContent = "TRY AGAIN";
+    }
+  } else {
     audio.pause();
-    play.textContent="▶";
-  }
-}
 
-function next(){
-  if(shuffled){
-    current=Math.floor(Math.random()*tracks.length);
-  }else{
-    current=(current+1)%tracks.length;
-  }
-  loadTrack();
-  audio.play();
-  play.textContent="Ⅱ";
-}
-
-function previous(){
-  current=(current-1+tracks.length)%tracks.length;
-  loadTrack();
-  audio.play();
-  play.textContent="Ⅱ";
-}
-
-document.getElementById("shuffle").onclick=()=>{
-  shuffled=!shuffled;
-  document.getElementById("shuffle").style.color=
-    shuffled ? "#d9ff4f" : "#fff";
-};
-
-audio.addEventListener("ended",next);
-
-audio.addEventListener("timeupdate",()=>{
-  if(audio.duration){
-    progress.value=(audio.currentTime/audio.duration)*100;
+    toggle.classList.remove("playing");
+    icon.textContent = "♪";
+    label.textContent = "SOUND OFF";
+    toggle.setAttribute("aria-label", "Play ambient music");
+    toggle.setAttribute("aria-pressed", "false");
   }
 });
 
-progress.addEventListener("input",()=>{
-  if(audio.duration){
-    audio.currentTime=(progress.value/100)*audio.duration;
-  }
+audio.addEventListener("error", () => {
+  label.textContent = "AUDIO UNAVAILABLE";
 });
-
-loadTrack();
 </script>
 
 </body>
-    </html>
+      </html>
+    
